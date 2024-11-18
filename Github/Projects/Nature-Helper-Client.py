@@ -1,6 +1,4 @@
 import discord
-import time
-import password as fonk
 
 ozellik = discord.Intents.default()
 
