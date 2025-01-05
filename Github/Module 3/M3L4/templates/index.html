@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+  >
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="../static/css/style.css">
+  <title>Meme oluşturucu</title>
+</head>
+<body>
+  <header class="header">
+    <img src="../static/img/logo.svg" alt="logo" width="50" height="50">
+    <ul class="main-list">
+        <li class="list__item">
+          <a href="">Ana Sayfa</a>
+        </li>
+        <li class="list__item">
+          <a href="">Koleksiyon</a>
+        </li>
+        <li class="list__item">
+          <a href="">Geri bildirim</a>
+        </li>
+    </ul>
+  </header>
+  <main>
+    {% block content %}
+    <div class="form-block">
+      <h1>Meminizi oluşturun!</h1>
+      <form method="POST" action="{{ url_for('index') }}">
+        <ul class="form-list">
+          <li class="form-list_item">
+            <label for="image-selector">Bir mem seçin</label>
+            <select name="image-selector" id="image-selector">
+              <option value="logo.svg" {% if selected_image == 'logo.svg' %}selected{% endif %}>Bir mem seçin</option>
+              <option value="meme_1.jpg" {% if selected_image == 'meme_1.jpg' %}selected{% endif %}>Afet Kız</option>
+              <option value="meme_2.jpg" {% if selected_image == 'meme_2.jpg' %}selected{% endif %}>iki Düğme</option>
+              <option value="meme_3.png" {% if selected_image == 'meme_2.png' %}selected{% endif %}>Koşan At</option>
+              <option value="meme_4.jpg" {% if selected_image == 'meme_4.jpg' %}selected{% endif %}>Kare Gojo</option>
+              <option value="meme_5.png" {% if selected_image == 'meme_5.png' %}selected{% endif %}>Meyveler Var</option>
+              <option value="meme_6.png" {% if selected_image == 'meme_6.png' %}selected{% endif %}>Meyveler Yok</option>
+              <option value="meme_7.png" {% if selected_image == 'meme_7.png' %}selected{% endif %}>Nah I'd Win</option>
+              <option value="meme_8.png" {% if selected_image == 'meme_8.png' %}selected{% endif %}>Gözlüklü Köpek</option>
+              <option value="meme_9.png" {% if selected_image == 'meme_9.png' %}selected{% endif %}>Hayır</option>
+              <option value="meme_10.png" {% if selected_image == 'meme_10.png' %}selected{% endif %}>Ayrık Gojo</option>
+              <option value="meme_11.png" {% if selected_image == 'meme_11.png' %}selected{% endif %}>Sukuna Mew</option>
+              <option value="meme_12.png" {% if selected_image == 'meme_12.png' %}selected{% endif %}>Roblox Domain</option>
+              <option value="meme_13.png" {% if selected_image == 'meme_13.png' %}selected{% endif %}>Balkabakları</option>
+              <option value="meme_14.png" {% if selected_image == 'meme_14.png' %}selected{% endif %}>Karpuz</option>
+              <option value="meme_15.png" {% if selected_image == 'meme_15.png' %}selected{% endif %}>Gülümseme</option>
+
+            </select>
+          </li>
+          <li class="form-list_item">
+            <label for="textTop">Üst metni buraya girin</label>
+            <input class="input_text" type="text" placeholder="Top text" name="textTop">
+          </li>
+          <li class="form-list_item">
+            <label for="textBottom">Alt metni buraya girin</label>
+            <input class="input_text" type="text" placeholder="Bottom text" name="textBottom">
+          </li>
+          <li class="form-list_item">
+            <label for="color-selector">Metin rengini ayarla</label>
+            <select name="color-selector" id="color-selector">
+              <option value="white" {% if selected_color == 'white' %}selected{% endif %}>Beyaz</option>
+              <option value="black" {% if selected_color == 'black' %}selected{% endif %}>Siyah</option>
+              <option value="blue" {% if selected_color == 'blue' %}selected{% endif %}>Mavi</option>
+
+
+            </select>
+          </li>
+          <li class="form-list_item">
+            <label for="textTop_y">Üst metnin Y ekseninde konumunu girin </label>
+            <input class="input_text" id="textTop_y" type="text" placeholder="Top text" name="textTop_y">
+          </li>
+          <li class="form-list_item">
+            <label for="textBottom_y">Alt metnin Y ekseninde konumunu girin</label>
+            <input class="input_text" id="textBottom_y" type="text" placeholder="Bottom text" name="textBottom_y">
+          </li>
+          <button type="submit">Meme oluşturucu</button>
+        </ul>
+      </form>
+    </div>
+    <div class="meme-block" id="memeBlock">
+      
+      <p class="text_top" style="color: {{selected_color}}; top: {{text_top_y}}px"></p>
+        {{text_top}}
+      </p>
+
+      <img class="meme" src="{{ url_for('serve_images', path=selected_image) }}" alt="{{ selected_image }}">
+
+      <p class="text_bottom" style="color: {{selected_color}}; bottom: {{text_bottom_y}}px"></p>
+        {{text_bottom}}
+      </p>
+    </div>
+    {% endblock %}
+  </main>
+  <footer>
+
+  </footer>
+</body>
+</html>
