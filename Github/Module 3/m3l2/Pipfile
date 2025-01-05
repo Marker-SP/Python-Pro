@@ -1,0 +1,11 @@
+[[source]]
+url = "https://test.com/test"
+verify_ssl = true
+name = "test"
+
+[packages]
+
+[dev-packages]
+
+[requires]
+python_version = "3.11"
